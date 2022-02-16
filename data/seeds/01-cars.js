@@ -2,7 +2,7 @@
 const cars = [
   { 
        
-    vin: 1111111111211,
+    vin: "1G1AF1F57A7192174",
     make: 'toyota',
     model: 'camry',
     mileage: 130000,
@@ -12,7 +12,7 @@ const cars = [
 },
 { 
        
-    vin: 1111111131111,
+    vin: "4NUDT13S962700984",
     make: 'honda',
     model: 'civic',
     mileage: 140000,
@@ -22,7 +22,7 @@ const cars = [
 },
 { 
        
-    vin: 1111111161111,
+    vin: "JH4KA7551SC006828",
     make: 'nissan',
     model: 'sentra',
     mileage: 10000

@@ -1,21 +1,38 @@
 // DO YOUR MAGIC
 const express = require('express');
-
+const Car = require('./cars-model')
 const router = express.Router()
-
+const {
+checkCarId,
+checkCarPayload,
+checkVinNumberUnique,
+checkVinNumberValid
+} = require('./cars-middleware')
 
 router.get('/', async (req,res, next) => {
-    res.json('getting all cars')
+    try {
+    const cars = await Car.getAll()
+    res.json(cars)
+    } catch (err) {
+        next(err)
+    }
+ 
 })
 
 
-router.get('/:id', async (req,res, next) => {
-    res.json(`getting car wit id ${req.params.id}`)
+// eslint-disable-next-line no-unused-vars
+router.get('/:id', checkCarId, async (req,res, next) => {
+    res.json(req.car)
 })
 
 
-router.post('/', async (req,res, next) => {
-    res.json('new car')
+router.post('/', checkCarPayload, checkVinNumberValid, checkVinNumberUnique, async (req,res, next) => {
+    try {
+        const car = await Car.create(req.body)
+        res.json(car)
+    } catch (err) {
+        next(err)
+    }
 })
 
 module.exports = router
